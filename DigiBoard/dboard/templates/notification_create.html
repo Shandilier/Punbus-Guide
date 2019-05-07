@@ -1,0 +1,24 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<p style="color:black;font-size:30px">						O FOR AMRITSAR 
+	<br>						1 FOR BATHINDA 
+	<br>						2 FOR CHANDIGARH 
+	<br>						3 FOR JALANDHAR
+	<br>						4 FOR LUDHIANA 
+	<br>						5 FOR PATIALA 
+	<br>						6 FOR SANGRUR 
+	<br> 						7 FOR PATHANKOT
+	<br> 						8 FOR FEROZEPUR 
+	<br>						9 FOR MOGA</p>
+<form method="POST" action="" enctype="multipart/form-data">
+	{% csrf_token %}
+	{{ form.media }}
+	{{form.as_p}}
+
+	<button class="btn btn-success" type="submit">Yup!Done</button>
+</form>
+
+
+
+{% endblock %}

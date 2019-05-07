@@ -1,0 +1,77 @@
+{% extends "base_generic.html" %}
+{% block headfile %}
+    <link href="https://fonts.googleapis.com/css?family=Germania+One" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            width: 100%;
+        }
+
+        .bg {
+            /* The image used */
+
+            /* Full height */
+            height: 100%;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+    </style>
+
+
+{% load static %}
+{% endblock %}
+{% block content %}
+{% for each in search_list %}
+    
+
+
+
+<div class="col-sm-12">
+      
+<div class="card card-inverse" style="background-color: #e8e4d7; border-color: #333; margin-bottom: 40px;">
+  <div class="card-block col-sm-12">
+
+    <h3 class="card-title" style="color: #000"> <font size="45px"><a href=">{{ each.heading }}</a></font> <small style="font-size: 15px"><a href="#"> {{each.user}}</a></small> <small style="font-size: 10px">{{ each.timestamp | timesince}} ago</small></h3>
+    {% if each.xm is not -1 %}
+    <p style="color:black;font-size: 20px">Start Location:{{each.source}}</p>
+    <p style="color:black;font-size: 20px">End Location:{{each.des}} </p>
+    <p style="color:black;font-size: 20px">Departure Time: {{each.HH}}:{{each.MM}}</p>
+    <p style="color:black;font-size: 20px;">YOU CAN REACH DESTINATION AT : {{each.am}}:{{each.bm}}<br>AND TOTAL COST CONSIDERING Rs. 1.5 PER MIN WOULD BE APPROXIMATELY=Rs. {{each.cm}}<br>
+    OR YOU CAN GET A DIRECT BUS AT = {{each.dm}}:{{each.em}} AND REACH BY- {{each.fm}}: {{each.gm}}
+            </p>
+    {% else %}
+    <p>NO DIRECT BUS AVAILABLE</p>
+    {% endif %}
+      <!-- <a href="#" class="btn btn-primary">Read More</a> -->
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+
+
+
+<hr>
+{% if is_paginated %}
+
+        <div style="">
+            <center>
+                {% if page_obj.has_previous %}
+                    <a href="/?page={{ page_obj.previous_page_number }}"><<</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="/?page={{ page_obj.next_page_number }}">>></a>
+                {% endif %}
+          </center>
+        </div>
+    
+{% endif %}
+<hr>
+
+{% endblock %}
